@@ -1,0 +1,384 @@
+:root {
+  --sand: #ead7b0;
+  --clay: #b8926b;
+  --deep-clay: #9c6f4e;
+  --terracotta: #a76f4d;
+  --brown: #4f3522;
+  --soft-brown: #76533a;
+  --sage: #6b8e5e;
+  --red-clay: #a55d5d;
+  --panel: #f7edda;
+  --gold: #b98535;
+  --muted: #8a7864;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  font-family: Georgia, "Times New Roman", serif;
+  color: var(--brown);
+  background:
+    radial-gradient(circle at 15% 20%, rgba(184, 146, 107, 0.18), transparent 32%),
+    radial-gradient(circle at 80% 10%, rgba(107, 142, 94, 0.16), transparent 28%),
+    linear-gradient(135deg, #f3e4c5, var(--sand));
+}
+
+main {
+  width: min(1100px, calc(100vw - 28px));
+  margin: 0 auto;
+  padding: 26px 0 36px;
+}
+
+.page-header {
+  text-align: center;
+  margin-bottom: 18px;
+}
+
+h1 {
+  margin: 0 0 8px;
+  font-size: clamp(2rem, 4vw, 3.1rem);
+  line-height: 1.05;
+  color: var(--brown);
+}
+
+h2 {
+  margin: 0 0 10px;
+  font-size: 1.28rem;
+  color: var(--brown);
+}
+
+h3 {
+  margin: 0 0 6px;
+  font-size: 1.05rem;
+  color: #5b3b24;
+}
+
+p {
+  line-height: 1.45;
+}
+
+a {
+  color: #76421f;
+  font-weight: 700;
+}
+
+.subtitle {
+  margin: 0 auto;
+  max-width: 860px;
+  font-size: 1.08rem;
+  color: var(--soft-brown);
+}
+
+.note,
+.info-panel {
+  border: 1px solid rgba(79, 53, 34, 0.22);
+  border-radius: 12px;
+  background: rgba(247, 237, 218, 0.78);
+  color: #614229;
+}
+
+.note {
+  max-width: 930px;
+  margin: 16px auto 0;
+  padding: 13px 16px;
+}
+
+.game-shell {
+  position: relative;
+  margin-top: 18px;
+  padding: 16px;
+  border: 2px solid rgba(79, 53, 34, 0.42);
+  border-radius: 18px;
+  background: rgba(247, 237, 218, 0.64);
+  box-shadow: 0 18px 45px rgba(79, 53, 34, 0.16);
+}
+
+.stats {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(125px, 1fr));
+  gap: 10px;
+  margin-bottom: 14px;
+}
+
+.stat {
+  padding: 10px 12px;
+  border: 1px solid rgba(79, 53, 34, 0.24);
+  border-radius: 10px;
+  background: rgba(234, 215, 176, 0.72);
+  font-weight: 700;
+  text-align: center;
+  color: #563a25;
+}
+
+.play-area {
+  display: grid;
+  grid-template-columns: minmax(0, 760px) minmax(300px, 1fr);
+  align-items: start;
+  gap: 14px;
+}
+
+.canvas-wrap {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  overflow: hidden;
+  border: 3px solid var(--brown);
+  border-radius: 14px;
+  background: #d6c090;
+}
+
+canvas {
+  display: block;
+  width: 100%;
+  max-width: 800px;
+  height: auto;
+  aspect-ratio: 4 / 3;
+}
+
+.side-panel {
+  display: grid;
+  gap: 12px;
+}
+
+.card {
+  padding: 12px;
+  border: 1px solid rgba(79, 53, 34, 0.24);
+  border-radius: 12px;
+  background: rgba(234, 215, 176, 0.65);
+}
+
+.card p {
+  margin: 0;
+}
+
+.case-meta {
+  display: grid;
+  gap: 7px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.case-meta li,
+.feedback-box {
+  padding: 8px 9px;
+  border-left: 4px solid var(--deep-clay);
+  border-radius: 8px;
+  background: rgba(247, 237, 218, 0.72);
+  line-height: 1.35;
+}
+
+.feedback-box.correct {
+  border-left-color: var(--sage);
+}
+
+.feedback-box.incorrect {
+  border-left-color: var(--red-clay);
+}
+
+.feedback-box.pending {
+  border-left-color: var(--gold);
+}
+
+.decision-buttons {
+  display: grid;
+  gap: 8px;
+}
+
+.decision-buttons button,
+.controls button,
+.start-card button {
+  border: 2px solid var(--brown);
+  border-radius: 999px;
+  padding: 10px 18px;
+  font: inherit;
+  font-weight: 700;
+  color: #f8eddb;
+  background: var(--terracotta);
+  cursor: pointer;
+  transition: transform 120ms ease, background 120ms ease;
+}
+
+.decision-buttons button:hover,
+.decision-buttons button:focus-visible,
+.controls button:hover,
+.controls button:focus-visible,
+.start-card button:hover,
+.start-card button:focus-visible {
+  background: #8f5c3f;
+  transform: translateY(-1px);
+  outline: none;
+}
+
+.decision-buttons button:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.funding-track {
+  height: 16px;
+  overflow: hidden;
+  margin-top: 8px;
+  border: 1px solid rgba(79, 53, 34, 0.42);
+  border-radius: 999px;
+  background: rgba(79, 53, 34, 0.16);
+}
+
+#fundingFill {
+  width: 0%;
+  height: 100%;
+  background: linear-gradient(90deg, var(--terracotta), var(--gold), var(--sage));
+  transition: width 180ms ease;
+}
+
+.legend-list {
+  display: grid;
+  gap: 7px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  font-size: 0.95rem;
+}
+
+.legend-list span {
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  margin-right: 8px;
+  border: 1px solid rgba(79, 53, 34, 0.55);
+  vertical-align: -3px;
+}
+
+.swatch-claim {
+  background: var(--clay);
+}
+
+.swatch-correct {
+  background: var(--sage);
+}
+
+.swatch-challenge {
+  background: var(--red-clay);
+}
+
+.swatch-ambiguous {
+  background: var(--gold);
+}
+
+.swatch-mistake {
+  background: var(--muted);
+}
+
+.swatch-boundary {
+  background: transparent;
+  border: 2px dashed var(--brown) !important;
+}
+
+.controls {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-top: 14px;
+}
+
+#message {
+  flex: 1 1 420px;
+  min-height: 1.7em;
+  margin: 0;
+  font-size: 1.04rem;
+  font-weight: 700;
+  color: #5e3d25;
+}
+
+.start-panel {
+  position: absolute;
+  inset: 16px;
+  z-index: 3;
+  display: grid;
+  place-items: center;
+  padding: 18px;
+  border-radius: 16px;
+  background: rgba(79, 53, 34, 0.32);
+  backdrop-filter: blur(3px);
+}
+
+.start-card {
+  width: min(660px, 100%);
+  padding: 22px;
+  border: 2px solid var(--brown);
+  border-radius: 18px;
+  background: var(--panel);
+  box-shadow: 0 18px 42px rgba(79, 53, 34, 0.25);
+}
+
+.start-card p {
+  margin: 0 0 10px;
+}
+
+.start-card ol {
+  margin: 0 0 16px;
+  padding-left: 22px;
+  line-height: 1.45;
+}
+
+.hidden {
+  display: none;
+}
+
+.education-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+  margin-top: 18px;
+}
+
+.info-panel {
+  padding: 15px 16px;
+}
+
+.info-panel ul {
+  margin: 0;
+  padding-left: 20px;
+}
+
+.info-panel li {
+  margin: 0 0 8px;
+  line-height: 1.4;
+}
+
+.sources {
+  margin-top: 18px;
+}
+
+@media (max-width: 960px) {
+  .play-area,
+  .education-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .stats {
+    grid-template-columns: repeat(2, minmax(130px, 1fr));
+  }
+}
+
+@media (max-width: 720px) {
+  main {
+    width: min(100vw - 16px, 1100px);
+    padding-top: 18px;
+  }
+
+  .game-shell {
+    padding: 10px;
+  }
+
+  .start-panel {
+    inset: 10px;
+  }
+}

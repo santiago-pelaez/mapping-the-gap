@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mapping the Gap: Correcting FCC Broadband Maps</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <main>
+    <header class="page-header">
+      <h1>Mapping the Gap: Correcting FCC Broadband Maps</h1>
+      <p class="subtitle">Run a broadband challenge desk. Review case files, decide whether official coverage claims should be challenged, and see whether corrected data can unlock funding.</p>
+      <p class="note">The official map starts by treating every region as covered. Your job is to separate false availability claims from real coverage and weak evidence. This makes the assignment argument visible: data only changes policy when communities can document the gap in a form the system accepts.</p>
+    </header>
+
+    <section class="game-shell" aria-label="Broadband challenge desk game">
+      <div id="startPanel" class="start-panel">
+        <div class="start-card">
+          <h2>How to Play</h2>
+          <p>You are reviewing broadband map cases from tribal land. Each case compares an official provider claim with community evidence.</p>
+          <ol>
+            <li>Read the case file.</li>
+            <li>Choose the decision that best fits the evidence.</li>
+            <li>Build enough correct challenge evidence to move funding from blocked to eligible.</li>
+          </ol>
+          <button id="startGame" type="button">Start Challenge Desk</button>
+        </div>
+      </div>
+
+      <div class="stats" aria-live="polite">
+        <div class="stat">Cases Reviewed: <span id="casesReviewed">0</span> / 10</div>
+        <div class="stat">Correct Decisions: <span id="correctDecisions">0</span></div>
+        <div class="stat">Bad Claims Challenged: <span id="badClaimsChallenged">0</span> / 4</div>
+        <div class="stat">Credibility: <span id="credibility">100</span></div>
+        <div class="stat">Funding Status: <span id="fundingStatus">Blocked</span></div>
+      </div>
+
+      <div class="play-area">
+        <div class="canvas-wrap">
+          <canvas id="mapCanvas" width="800" height="600" aria-label="Map of sixteen irregular tribal land regions"></canvas>
+        </div>
+
+        <aside class="side-panel" aria-label="Current challenge case">
+          <div class="card">
+            <h2 id="caseTitle">Current Case</h2>
+            <ul id="caseMeta" class="case-meta">
+              <li>Press start to receive the first case file.</li>
+            </ul>
+          </div>
+
+          <div class="card">
+            <h2>Your Decision</h2>
+            <div class="decision-buttons">
+              <button id="challengeButton" type="button" disabled>Submit Challenge</button>
+              <button id="verifyButton" type="button" disabled>Verify As Covered</button>
+              <button id="evidenceButton" type="button" disabled>Need More Evidence</button>
+            </div>
+          </div>
+
+          <div class="card">
+            <h2>Decision Feedback</h2>
+            <p id="feedback" class="feedback-box pending">Feedback appears after you choose.</p>
+          </div>
+
+          <div class="card">
+            <h2>Funding Progress</h2>
+            <p><strong id="evidenceCount">0</strong> of 4 false coverage claims successfully challenged.</p>
+            <div class="funding-track" aria-hidden="true">
+              <div id="fundingFill"></div>
+            </div>
+          </div>
+
+          <div class="card">
+            <h2>Legend</h2>
+            <ul class="legend-list">
+              <li><span class="swatch-claim"></span>Official map says covered</li>
+              <li><span class="swatch-correct"></span>Correctly verified covered</li>
+              <li><span class="swatch-challenge"></span>Correctly challenged false claim</li>
+              <li><span class="swatch-ambiguous"></span>Correctly requested more evidence</li>
+              <li><span class="swatch-mistake"></span>Mistake</li>
+              <li><span class="swatch-boundary"></span>Tribal boundary</li>
+            </ul>
+          </div>
+        </aside>
+      </div>
+
+      <div class="controls">
+        <p id="message">Press Start Challenge Desk when ready.</p>
+        <button id="playAgain" type="button">Play Again</button>
+      </div>
+    </section>
+
+    <section class="education-grid" aria-label="Assignment connection">
+      <article class="info-panel">
+        <h2>How This Connects</h2>
+        <ul>
+          <li><strong>Provider-reported data:</strong> The official map begins from broadband availability claims submitted by providers.</li>
+          <li><strong>Challenge process:</strong> The player must decide when evidence is strong enough to dispute an availability claim.</li>
+          <li><strong>Funding consequences:</strong> False coverage claims can make underserved tribal areas look ineligible or lower priority.</li>
+          <li><strong>Epistemic injustice:</strong> The dashed boundary keeps tribal sovereignty visible on a map that can otherwise erase it.</li>
+        </ul>
+      </article>
+
+      <article class="info-panel">
+        <h2>Reflection Prompt</h2>
+        <p>This project uses a case-file decision game because the broadband map problem is not only about whether a region is colored as covered. Each case asks the player to compare a provider claim with evidence from people who live inside the boundary: failed service orders, terrain-blocked wireless signals, missing address records, confirmed installations, or affordability concerns. That format makes the research concrete. FCC broadband data depends on reported availability and a formal challenge process, so the game rewards decisions that match what the process can actually accept as evidence.</p>
+        <p>The map and funding meter show why those decisions matter for tribal broadband access. When false coverage claims remain unchallenged, underserved areas can appear served and funding stays blocked or at risk. When strong evidence corrects the map, the same places become visible to the system. The dashed tribal boundary is part of that argument: it keeps sovereignty and local geography in view while showing how official data can blur or erase the difference between nearby infrastructure and real home service.</p>
+      </article>
+    </section>
+
+    <section class="info-panel sources" aria-label="Research used">
+      <h2>Research Used</h2>
+      <ul>
+        <li><a href="https://help.bdc.fcc.gov/hc/en-us/articles/7682769466395-Broadband-Data-Collection-BDC-FAQs" target="_blank" rel="noreferrer">FCC Broadband Data Collection FAQ</a>: Used to distinguish newer BDC reporting from the older Form 477 system.</li>
+        <li><a href="https://help.bdc.fcc.gov/hc/en-us/articles/10467446103579-How-to-Use-the-FCC-s-National-Broadband-Map" target="_blank" rel="noreferrer">FCC National Broadband Map Help</a>: Used for the challenge-process mechanic and provider-submitted map claims.</li>
+        <li><a href="https://www.pew.org/en/research-and-analysis/reports/2025/07/to-improve-broadband-deployment-enhanced-data-collection-is-key" target="_blank" rel="noreferrer">Pew, To Improve Broadband Deployment, Enhanced Data Collection Is Key</a>: Used to frame accurate mapping as infrastructure policy, not just technical cleanup.</li>
+        <li><a href="https://www.gao.gov/products/gao-24-106541" target="_blank" rel="noreferrer">GAO 2024 Tribal Broadband Report</a>: Used to connect tribal broadband implementation and federal funding barriers.</li>
+        <li><a href="https://www.minneapolisfed.org/article/2023/inaccurate-data-could-hinder-broadband-access-in-indian-country" target="_blank" rel="noreferrer">Federal Reserve Bank of Minneapolis, Inaccurate Data in Indian Country</a>: Used to connect bad map data with tribal ISPs and funding risk.</li>
+      </ul>
+    </section>
+  </main>
+
+  <script type="module" src="game.mjs"></script>
+</body>
+</html>
