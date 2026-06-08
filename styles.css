@@ -332,6 +332,24 @@ canvas {
   display: none;
 }
 
+.research-section {
+  margin-top: 18px;
+}
+
+.research-section > h2 {
+  text-align: center;
+}
+
+.research-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.research-grid .info-panel p {
+  margin: 0;
+}
+
 .education-grid {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -359,6 +377,7 @@ canvas {
 
 @media (max-width: 960px) {
   .play-area,
+  .research-grid,
   .education-grid {
     grid-template-columns: 1fr;
   }
